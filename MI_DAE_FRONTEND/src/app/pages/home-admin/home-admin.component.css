@@ -1,0 +1,158 @@
+/* Contenedor principal del admin */
+.admin-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Contenido principal */
+.admin-main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.welcome-section h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+/* Cards de administración */
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.admin-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.admin-card:hover:not(.disabled) {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.admin-card.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.card-icon {
+  margin-bottom: 1rem;
+}
+
+.admin-card h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.admin-card p {
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Botones */
+.btn-primary {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.btn-disabled {
+  background-color: #bdc3c7;
+  color: #7f8c8d;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  cursor: not-allowed;
+  font-size: 1rem;
+}
+
+/* Iconos usando pseudo-elementos */
+.icon-bus::before {
+  content: "🚌";
+  margin-right: 0.5rem;
+}
+
+.icon-bus-large::before {
+  content: "🚌";
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.icon-users::before {
+  content: "👥";
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.icon-settings::before {
+  content: "⚙️";
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-navbar {
+    padding: 0 1rem;
+    flex-direction: column;
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .navbar-brand {
+    margin-bottom: 1rem;
+  }
+
+  .admin-main {
+    padding: 1rem;
+  }
+
+  .welcome-section h1 {
+    font-size: 2rem;
+  }
+
+  .admin-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

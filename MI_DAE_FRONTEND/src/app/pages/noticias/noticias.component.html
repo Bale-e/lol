@@ -1,0 +1,19 @@
+
+
+<section class="noticias-animadas">
+  <h2 class="noticias-titulo">📰 Noticias Destacadas</h2>
+  <div class="noticias-grid">
+    <div *ngFor="let noticia of noticias" class="noticia-card">
+      <div class="noticia-img-wrapper">
+        <img [src]="noticia.imagen" [alt]="noticia.titulo" class="noticia-img" loading="lazy" />
+        <span class="noticia-fecha">{{ noticia.fecha }}</span>
+      </div>
+      <div class="noticia-body">
+        <h3 class="noticia-titulo">{{ noticia.titulo }}</h3>
+        <p class="noticia-desc">{{ noticia.descripcion }}</p>
+        <button class="noticia-btn" aria-label="Leer más sobre {{ noticia.titulo }}">Leer más</button>
+      </div>
+    </div>
+  </div>
+</section>
+

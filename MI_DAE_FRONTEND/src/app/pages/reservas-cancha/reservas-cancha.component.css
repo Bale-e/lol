@@ -1,0 +1,261 @@
+/* Botón eliminar reserva */
+.btn-eliminar-reserva {
+  margin-top: 3px;
+  background: #fff0f1;
+  color: #e60026;
+  border: 1px solid #e60026;
+  border-radius: 6px;
+  padding: 1px 1px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-eliminar-reserva:hover, .btn-eliminar-reserva:focus {
+  background: #e60026;
+  color: #fff;
+  border-color: #b91c1c;
+}
+/* Header de la sección */
+.reservas-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.reservas-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #e60026;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.reservas-desc {
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+/* Botón de celda libre más bonito */
+
+/* Botón de celda libre: estilo simple como antes */
+.slot-libre-btn {
+  width: 100%;
+  height: 100%;
+  padding: 16px 12px;
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+  background: #fff;
+  color: #6b7280;
+  font-weight: 700;
+  cursor: pointer;
+}
+.slot-libre-btn:hover, .slot-libre-btn:focus {
+  background: #f3f4f6;
+  color: #374151;
+  outline: none;
+}
+.slot-libre-text {
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+/* Responsive: grilla y tarjetas */
+@media (max-width: 1100px) {
+  .agenda-grid {
+    min-width: 700px;
+    grid-template-columns: 120px repeat(5, 1fr);
+    grid-auto-rows: 80px;
+  }
+}
+@media (max-width: 800px) {
+  .agenda-wrapper {
+    max-width: 100vw;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .agenda-grid {
+    min-width: 520px;
+    grid-template-columns: 80px repeat(5, 1fr);
+    grid-auto-rows: 60px;
+  }
+  .reserva-card {
+    font-size: 0.95rem;
+    padding: 8px 8px;
+  }
+  .slot-libre-btn {
+    font-size: 0.95rem;
+    padding: 10px 6px;
+  }
+}
+@media (max-width: 600px) {
+  .agenda-wrapper {
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    max-width: 100vw;
+  }
+  .agenda-grid {
+    min-width: 340px;
+    grid-template-columns: 48px repeat(5, 1fr);
+    grid-auto-rows: 44px;
+  }
+  .reserva-card {
+    font-size: 0.85rem;
+    padding: 5px 4px;
+    border-radius: 7px;
+  }
+  .slot-libre-btn {
+    font-size: 0.85rem;
+    padding: 4px 2px;
+    border-radius: 7px;
+  }
+  .reservas-title {
+    font-size: 1.2rem;
+  }
+  .reservas-desc {
+    font-size: 0.95rem;
+  }
+}
+:root{
+  --grid: #e5e7eb;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --text: #374151;
+  --text-weak: #e7e7e7;
+  --yellow: #f4b400; /* similar al de la captura */
+  --red: #d54b5b;   /* similar al de la captura */
+}
+
+* { box-sizing: border-box; }
+
+.reservas {
+  display: block;
+  padding: 8px;
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.alerts { margin-bottom: 10px; }
+.alert {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.alert.ok  { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.alert.err { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+.agenda-wrapper {
+  border: 1px solid var(--grid);
+  border-radius: 10px;
+  overflow: auto;
+  max-height: 75vh;          /* scroll vertical como en la captura */
+  background: var(--white);
+}
+
+/* Grilla principal: 1 columna de horas + 5 de días */
+.agenda-grid {
+  display: grid;
+  grid-template-columns: 180px repeat(5, 1fr);
+  grid-auto-rows: minmax(90px, auto); /* alto mínimo, crece si hay más contenido */
+  min-width: 960px;
+  position: relative;
+  row-gap: 6px; /* separación entre filas */
+}
+
+/* Esquina superior izquierda */
+.corner {
+  background: var(--bg);
+  border-right: 1px solid var(--grid);
+  border-bottom: 1px solid var(--grid);
+}
+
+/* Cabecera de días */
+.day-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--grid);
+  text-align: center;
+  font-weight: 700;
+  padding: 14px 8px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+/* Columna izquierda con horas */
+.time-cell {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--bg);
+  color: #111827;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-right: 1px solid var(--grid);
+  border-bottom: 1px solid var(--grid);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Celdas del horario */
+.slot-cell {
+  border-right: 1px solid var(--grid);
+  border-bottom: 1px solid var(--grid);
+  padding: 10px 6px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 60px;
+  justify-content: flex-start;
+  overflow-wrap: anywhere;
+}
+
+/* Tarjeta de la reserva */
+.reserva-card {
+  color: #e6e6e6;
+  border-radius: 10px;
+  padding: 10px 10px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  min-height: 38px;
+  margin-bottom: 2px;
+  word-break: break-word;
+}
+/* Mejoras para móviles y pantallas pequeñas */
+@media (max-width: 800px) {
+  .agenda-grid {
+    grid-auto-rows: minmax(60px, auto);
+    row-gap: 4px;
+  }
+  .slot-cell {
+    min-height: 38px;
+    padding: 6px 2px;
+    gap: 5px;
+  }
+  .reserva-card {
+    min-height: 28px;
+    padding: 6px 4px;
+    font-size: 0.92rem;
+  }
+}
+.card-yellow,
+.card-red {
+  background: #d54b5b; /* o el rojo que prefieras */
+}
+.reserva-title {
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.reserva-meta {
+  font-size: 13px;
+  line-height: 1.3;
+}
+.reserva-meta .label { font-weight: 700; color: #fff; opacity: 0.95; }
+.reserva-meta .user  { color: var(--text-weak); font-weight: 600; }
+
+/* Utilidad para stickies */
+.sticky { position: sticky; top: 0; }

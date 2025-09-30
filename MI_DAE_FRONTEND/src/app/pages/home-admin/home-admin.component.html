@@ -1,0 +1,45 @@
+<div class="admin-container">
+  <!-- Contenido principal -->
+  <main class="admin-main">
+    <div class="welcome-section">
+      <h1>Bienvenido al Panel de Administración</h1>
+      <p class="welcome-subtitle">Gestiona los recursos y servicios de MI-DAE desde aquí.</p>
+      
+      <div class="admin-cards">
+        <div class="admin-card">
+          <div class="card-icon">
+            <i class="icon-bus-large"></i>
+          </div>
+          <h3>Registro de Buses</h3>
+          <p>Visualiza y gestiona el registro de uso de los buses institucionales.</p>
+          <button class="btn-primary" (click)="irARegistroBuses()">
+            Ver Registros
+          </button>
+        </div>
+        
+        <!-- Placeholder para futuras funcionalidades -->
+        <div class="admin-card disabled">
+          <div class="card-icon">
+            <i class="icon-users"></i>
+          </div>
+          <h3>Gestión de Usuarios</h3>
+          <p>Administra permisos y accesos de usuarios.</p>
+          <button class="btn-disabled" disabled>
+            Próximamente
+          </button>
+        </div>
+        
+        <div class="admin-card disabled">
+          <div class="card-icon">
+            <i class="icon-settings"></i>
+          </div>
+          <h3>Configuración</h3>
+          <p>Configura parámetros del sistema.</p>
+          <button class="btn-disabled" disabled>
+            Próximamente
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

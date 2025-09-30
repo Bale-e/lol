@@ -1,0 +1,11 @@
+/* Estilos específicos para el layout de administrador */
+.main-content.with-admin-navbar {
+  min-height: calc(100vh - 70px);
+  background-color: #f5f5f5;
+  padding-top: 0;
+}
+
+/* Asegurar que el contenido no se superponga con el navbar sticky */
+.app-container {
+  min-height: 100vh;
+}

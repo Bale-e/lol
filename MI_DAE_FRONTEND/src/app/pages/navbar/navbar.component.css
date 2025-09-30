@@ -1,0 +1,203 @@
+/* =============================
+   Sidebar Navbar Principal
+   ============================= */
+.sidebar-navbar {
+  position: fixed;          
+  top: 0;                  
+  left: 0;                 
+  width: 240px;            
+  height: 100vh;           
+  background: rgba(66, 63, 63, 0.95);
+  backdrop-filter: blur(20px);         
+  border-right: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-md);       
+  display: flex;                      
+  flex-direction: column;             
+  justify-content: space-between;    
+  padding: 1rem 0;                   
+  z-index: 1000;                     
+}
+
+/* =============================
+   Logo / Marca
+   ============================= */
+.sidebar-navbar .brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding:1rem;
+  box-sizing: border-box;
+}
+
+.sidebar-navbar .brand-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  width: 100%;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sidebar-navbar .brand-icon {
+  width: 100%;              /* Ocupa todo el ancho del sidebar */
+  height: auto;
+  max-height: 120px;        /* Controla altura máxima */
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brand-logo {
+  width: 100%;              /* Se adapta al ancho del contenedor */
+  height: auto;
+  object-fit: contain;      
+  object-position: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Logo cuando está colapsado */
+.brand-logo.collapsed-logo {
+  object-fit: cover;
+  object-position: left center;
+}
+
+/* Hover sobre el logo */
+.sidebar-navbar .brand-link:hover .brand-logo {
+  transform: scale(1.05);
+}
+
+/* Estado colapsado */
+.sidebar-navbar.collapsed .brand-icon {
+  width: 60px;
+  height: 60px;
+  max-height: none;
+}
+
+.brand-text {
+  background: linear-gradient(135deg, var(--primary-red), var(--primary-red-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================
+   Navegación (Links)
+   ============================= */
+.sidebar-navbar .nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  gap: 0.5rem;
+  margin-top: -0.25rem;
+}
+
+.sidebar-navbar .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: var(--gray-300);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+}
+
+.sidebar-navbar .nav-link:hover {
+  background: var(--accent-red);
+  color: var(--primary-red);
+}
+
+.sidebar-navbar .nav-link.active {
+  background: var(--accent-red);
+  color: var(--primary-red);
+  font-weight: 600;
+}
+
+.sidebar-navbar .nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 4px;
+  background: var(--primary-red-dark);
+  border-radius: 2px;
+}
+
+/* =============================
+   Iconos dentro de los links
+   ============================= */
+.sidebar-navbar .nav-icon {
+  font-size: 1.1rem;
+}
+
+/* =============================
+   Botón de Cerrar Sesión
+   ============================= */
+.sidebar-navbar .nav-actions {
+  padding: 0 1rem;
+}
+
+/* Información del usuario */
+.sidebar-navbar .user-info-section {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-navbar .user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.sidebar-navbar .user-name {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.sidebar-navbar .user-email {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  word-break: break-all;
+}
+
+.sidebar-navbar .logout-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary-red);
+  color: var(--white);
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.sidebar-navbar .logout-btn:hover {
+  background: var(--primary-red-dark);
+}
+
+.sidebar-navbar .logout-icon {
+  font-size: 1rem;
+}
+
+
+
+.brand-logo {
+  width: 70%;
+  height: auto; /* Mantiene la proporción */
+}

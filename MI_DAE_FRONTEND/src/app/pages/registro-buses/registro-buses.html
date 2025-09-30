@@ -1,0 +1,28 @@
+<div class="buses-cards-container">
+  <h1 class="buses-title">Buses registrados</h1>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!error && registrosBuses.length === 0" class="no-data">
+    No hay registros de uso de buses disponibles.<br>
+    <button class="btn-cargar-registros" (click)="cargarRegistros()">Mostrar Buses</button>
+  </div>
+  <div *ngIf="!error && registrosBuses.length > 0" class="buses-cards-grid">
+    <div class="bus-card" *ngFor="let registro of registrosBuses; trackBy: trackByRegistro">
+      <div class="bus-card-header">
+        <span class="bus-id">Bus #{{ registro.busesfk }}</span>
+      </div>
+      <div class="bus-card-body">
+        <div class="bus-info-row">
+          <span class="bus-label">Usuario:</span>
+          <span class="bus-value">{{ registro.usuariofk }}</span>
+        </div>
+        <div class="bus-info-row">
+          <span class="bus-label">Fecha y hora:</span>
+          <span class="bus-value">{{ registro.fechaHoraUso | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="info-footer" *ngIf="!error && registrosBuses.length > 0">
+    Total de registros: {{ registrosBuses.length }}
+  </div>
+</div>

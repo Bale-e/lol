@@ -1,0 +1,107 @@
+<section class="login-legacy">
+  <div class="auth-card" role="form" aria-labelledby="title-login">
+    <!-- Header -->
+   <div class="auth-header full-red">
+  <div class="brandrow">
+    <span class="logo-sq" aria-hidden="true"></span>
+    <span class="brandname">Mi_DAE</span>
+  </div>
+
+  <!-- Franja incluida dentro del bloque rojo -->
+  <div class="brand-separator-bleed" aria-hidden="true"></div>
+</div>
+
+    <!-- Contenido (y a la derecha, fondo rojo) -->
+    <div class="auth-body">
+      <p id="title-login" class="instruction">Ingrese su cuenta INACAPMail:</p>
+
+      <!-- Formulario de login -->
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        
+        <!-- Mensaje de error -->
+        @if (errorMessage) {
+          <div class="error-message">
+            <span class="error-icon">⚠️</span>
+            {{ errorMessage }}
+            <button type="button" class="close-error" (click)="clearError()">×</button>
+          </div>
+        }
+
+        <!-- Usuario -->
+        <div class="form-field">
+          <div class="input">
+            <input 
+              type="text" 
+              id="usuario" 
+              name="usuario"
+              [(ngModel)]="loginData.correo"
+              placeholder="usuario" 
+              autocomplete="username" 
+              aria-label="Usuario INACAPMail" 
+              (input)="clearError()"
+              required
+            />
+            <span class="addon">@inacapmail.cl</span>
+          </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-field">
+          <div class="input password-input">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              id="password" 
+              name="password"
+              [(ngModel)]="loginData.clave"
+              placeholder="********" 
+              autocomplete="current-password" 
+              aria-label="Contraseña"
+              (input)="clearError()"
+              required
+            />
+            <button 
+              type="button" 
+              class="password-toggle" 
+              (click)="togglePasswordVisibility()"
+              aria-label="Mostrar/Ocultar contraseña"
+            >
+              <img 
+                [src]="showPassword ? 'https://www.svgrepo.com/show/380007/eye-password-hide.svg' : 'https://www.svgrepo.com/show/108619/eye-close-up.svg'" 
+                [alt]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                class="password-icon"
+              />
+            </button>
+          </div>
+        </div>
+
+        <!-- Recordarme -->
+        <label class="remember">
+          <input type="checkbox" id="keep" />
+          <span>Mantener la sesión iniciada</span>
+        </label>
+
+        <!-- Acciones -->
+        <div class="actions">
+          <button 
+            class="btn btn-primary" 
+            type="submit" 
+            [disabled]="isLoading || !loginForm.form.valid"
+          >
+            @if (isLoading) {
+              <span class="loading-spinner">⏳</span>
+            }
+            {{ isLoading ? 'Iniciando sesión...' : 'Iniciar sesión' }}
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Recuperación -->
+      <div class="footer-line">
+        <div class="recover">
+          Recuperar clave. Click <a href="#">aquí</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

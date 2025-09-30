@@ -1,0 +1,212 @@
+
+<div class="reservas-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1 class="page-title">
+      <i class="icon-calendar"></i>
+      Gestión de Reservas
+    </h1>
+    <p class="page-subtitle">Administra y gestiona todas las reservas del sistema</p>
+    
+    <!-- Botón de diagnóstico -->
+    <div class="diagnostic-section">
+      <button type="button" (click)="probarConexion()" class="btn btn-secondary btn-small">
+        <i class="icon-wifi"></i>
+        Probar Conexión Backend
+      </button>
+      <small class="api-info">API: http://localhost:3000/api/reservasroute</small>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <div class="form-section">
+    <div class="form-card">
+      <div class="form-header">
+        <h2 class="form-title">
+          <i class="icon-plus" *ngIf="!editando"></i>
+          <i class="icon-edit" *ngIf="editando"></i>
+          {{ editando ? 'Editar Reserva' : 'Nueva Reserva' }}
+        </h2>
+      </div>
+
+      <form (ngSubmit)="editando ? actualizarReserva() : crearReserva()" class="reservation-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="hora_reserva" class="form-label">
+              <i class="icon-clock"></i>
+              Hora de Reserva
+            </label>
+            <input 
+              id="hora_reserva"
+              type="datetime-local" 
+              [(ngModel)]="nuevaReserva.hora_reserva" 
+              name="hora_reserva" 
+              class="form-input"
+              placeholder="Selecciona fecha y hora"
+              required 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="usuariofk" class="form-label">
+              <i class="icon-user"></i>
+              ID Usuario
+            </label>
+            <input 
+              id="usuariofk"
+              type="number" 
+              [(ngModel)]="nuevaReserva.usuariofk" 
+              name="usuariofk" 
+              class="form-input"
+              placeholder="Ingresa ID del usuario"
+              required 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="espaciofk" class="form-label">
+              <i class="icon-location"></i>
+              ID Espacio
+            </label>
+            <input 
+              id="espaciofk"
+              type="number" 
+              [(ngModel)]="nuevaReserva.espaciofk" 
+              name="espaciofk" 
+              class="form-input"
+              placeholder="Ingresa ID del espacio"
+              required 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="implementosfk" class="form-label">
+              <i class="icon-tool"></i>
+              ID Implemento
+            </label>
+            <input 
+              id="implementosfk"
+              type="number" 
+              [(ngModel)]="nuevaReserva.implementosfk" 
+              name="implementosfk" 
+              class="form-input"
+              placeholder="Ingresa ID del implemento"
+              required 
+            />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" [class]="editando ? 'btn btn-success' : 'btn btn-primary'">
+            <i class="icon-check"></i>
+            {{ editando ? 'Actualizar Reserva' : 'Crear Reserva' }}
+          </button>
+          <button type="button" (click)="resetFormulario()" [class]="editando ? 'btn btn-danger' : 'btn btn-secondary'">
+            <i [class]="editando ? 'icon-x' : 'icon-refresh'"></i>
+            {{ editando ? 'Cancelar' : 'Limpiar' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Messages Section -->
+  <div class="messages-section">
+    <div *ngIf="mensaje" class="alert alert-success">
+      <i class="icon-check-circle"></i>
+      {{ mensaje }}
+    </div>
+    <div *ngIf="error" class="alert alert-error">
+      <i class="icon-alert-circle"></i>
+      {{ error }}
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="table-section">
+    <div class="table-header">
+      <h2 class="table-title">
+        <i class="icon-list"></i>
+        Lista de Reservas
+      </h2>
+      <div class="table-info">
+        <span class="total-count">Total: {{ reservas.length || 0 }} reservas</span>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th class="th-id">
+              <i class="icon-hash"></i>
+              ID
+            </th>
+            <th class="th-time">
+              <i class="icon-clock"></i>
+              Hora Reserva
+            </th>
+            <th class="th-user">
+              <i class="icon-user"></i>
+              Usuario
+            </th>
+            <th class="th-space">
+              <i class="icon-location"></i>
+              Espacio
+            </th>
+            <th class="th-tool">
+              <i class="icon-tool"></i>
+              Implemento
+            </th>
+            <th class="th-actions">
+              <i class="icon-settings"></i>
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of reservas; let i = index" class="table-row" [class.even]="i % 2 === 0">
+            <td class="td-id">{{ reserva.id_reserva }}</td>
+            <td class="td-time">
+              <span class="time-display">{{ reserva.hora_reserva | date:'dd/MM/yyyy HH:mm' }}</span>
+            </td>
+            <td class="td-user">
+              <span class="user-badge">{{ reserva.usuariofk }}</span>
+            </td>
+            <td class="td-space">
+              <span class="space-badge">{{ reserva.espaciofk }}</span>
+            </td>
+            <td class="td-tool">
+              <span class="tool-badge">{{ reserva.implementosfk }}</span>
+            </td>
+            <td class="td-actions">
+              <div class="action-buttons">
+                <button 
+                  (click)="editarReserva(reserva)" 
+                  class="btn-action btn-edit"
+                  title="Editar reserva">
+                  <i class="icon-edit"></i>
+                </button>
+                <button 
+                  (click)="eliminarReserva(reserva.id_reserva)" 
+                  class="btn-action btn-delete"
+                  title="Eliminar reserva">
+                  <i class="icon-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="!reservas || reservas.length === 0" class="empty-state">
+            <td colspan="6">
+              <div class="empty-message">
+                <i class="icon-inbox"></i>
+                <p>No hay reservas registradas</p>
+                <small>Crea tu primera reserva usando el formulario superior</small>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

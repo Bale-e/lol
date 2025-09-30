@@ -1,0 +1,68 @@
+
+<section class="reservas">
+  <div class="reservas-header">
+    <h2 class="reservas-title">Reservas de Cancha</h2>
+    <p class="reservas-desc">Selecciona un horario disponible o revisa tus reservas.</p>
+  </div>
+
+  <!-- Mensajes -->
+  <div class="alerts" *ngIf="mensaje || error">
+    <div class="alert ok" *ngIf="mensaje">{{ mensaje }}</div>
+    <div class="alert err" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <!-- Grilla del horario -->
+  <div class="agenda-wrapper">
+    <div class="agenda-grid">
+      <!-- Esquina superior izquierda (vacía) -->
+      <div class="corner sticky"></div>
+
+      <!-- Cabecera de días -->
+      <div class="day-header sticky" *ngFor="let d of dias">
+        {{ d }}
+      </div>
+
+      <!-- Filas por hora -->
+      <ng-container *ngFor="let hora of horas">
+        <!-- Columna de horas (izquierda) -->
+        <div class="time-cell sticky">{{ hora }}</div>
+
+        <!-- Celdas por día (cada celda = 1 día x 1 tramo horario) -->
+        <div class="slot-cell" *ngFor="let d of dias">
+
+          <!-- Reservas en esta celda -->
+          <ng-container *ngIf="getReservas(d, hora) as enCelda">
+
+            <!-- Si hay reservas, mostrarlas -->
+            <ng-container *ngIf="enCelda.length; else libreTpl">
+              <div class="reserva-card card-red" *ngFor="let r of enCelda">
+                <div class="reserva-title">{{ r.titulo }}</div>
+                <div class="reserva-meta">
+                  <span class="label">Inicio:</span> <b>{{ r.inicio }}</b><br />
+                  <span class="label">Fin:</span> <b>{{ r.fin }}</b><br />
+                  <span class="user">{{ r.usuario }}</span>
+                </div>
+                <button class="btn-eliminar-reserva" (click)="eliminarReserva(r)" title="Eliminar reserva" aria-label="Eliminar reserva">
+                  🗑 Eliminar
+                </button>
+              </div>
+            </ng-container>
+
+            <!-- Celda libre: ocupa al hacer clic -->
+            <ng-template #libreTpl>
+              <button
+                class="slot-libre-btn"
+                type="button"
+                (click)="ocuparCelda(d, hora)"
+                aria-label="Ocupar celda libre"
+              >
+                 <span class="slot-libre-text">Disponible</span>
+              </button>
+            </ng-template>
+
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

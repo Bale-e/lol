@@ -1,0 +1,21 @@
+
+
+<section class="blog-header">
+  <span class="blog-title">Reserva Espacios</span>
+  <a class="see-all" href="#">See All</a>
+</section>
+<div class="card-grid">
+  <div class="card" *ngFor="let card of cards" (click)="navigateTo(card.route)" style="cursor:pointer;">
+    <div class="card-img-wrapper">
+      <img [src]="card.img" alt="Imagen de la tarjeta" class="card-img" />
+      <span class="card-tag">{{ card.tag }}</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{ card.title }}</h3>
+      <p class="card-desc">{{ card.desc }}</p>
+      <div class="card-meta">
+
+      </div>
+    </div>
+  </div>
+</div>

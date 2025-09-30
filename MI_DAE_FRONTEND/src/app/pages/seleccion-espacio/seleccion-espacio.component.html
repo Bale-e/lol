@@ -1,0 +1,24 @@
+<section class="blog-header">
+  <span class="blog-title">Selecciona un espacio</span>
+</section>
+<!-- Enlace de solo texto, alineado a la derecha -->
+<p style="text-align: right; margin-bottom: 14px;">
+  <a 
+    (click)="$event.preventDefault(); navigateTo('/implementos')"
+    style="color: #2980b9; text-decoration: underline; font-weight: 600; background: none; border: none; padding: 0; box-shadow: none; cursor: pointer;"
+  >
+    ¿Necesitas implementos? Pídelos aquí
+  </a>
+</p>
+<div class="card-grid">
+  <div class="card" *ngFor="let espacio of espacios" (click)="navigateTo(espacio.route)" style="cursor:pointer;">
+    <div class="card-img-wrapper">
+      <img [src]="espacio.img" alt="Imagen del espacio" class="card-img" />
+      <span class="card-tag">{{ espacio.tag }}</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{ espacio.title }}</h3>
+      <p class="card-desc">{{ espacio.desc }}</p>
+    </div>
+  </div>
+</div>

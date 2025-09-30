@@ -1,0 +1,87 @@
+<!-- Sidebar Navigation -->
+<nav class="sidebar-navbar" [class.collapsed]="collapsed" [class.mobile-open]="mobileOpen">
+  <!-- Brand/Logo -->
+  <div class="brand">
+    <a routerLink="/user/home" (click)="closeMobile()" class="brand-link">
+      <div class="brand-icon">
+        <img src="https://i.imgur.com/czqkLGv.png" 
+             alt="Mi DAE Logo" 
+             class="brand-logo"
+             [class.collapsed-logo]="collapsed">
+      </div>
+    </a>
+  </div>
+
+  <!-- Navigation Links -->
+  <div class="nav-links">
+    <a routerLink="/user/noticias" 
+       routerLinkActive="active" 
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="nav-link"
+       (click)="closeMobile()">
+      <i class="nav-icon"></i>
+      <span class="nav-text">Inicio</span>
+    </a>
+    <a routerLink="/user/home" 
+       routerLinkActive="active" 
+       class="nav-link"
+       (click)="closeMobile()">
+      <i class="nav-icon"></i>
+      <span class="nav-text">Reservas</span>
+    </a>
+
+    <a routerLink="/user/equipos" 
+       routerLinkActive="active" 
+       class="nav-link"
+       (click)="closeMobile()">
+      
+      <span class="nav-text">Equipos</span>
+    </a>
+
+
+  
+
+    <a routerLink="/user/vida-estudiantil" 
+       routerLinkActive="active" 
+       class="nav-link"
+       (click)="closeMobile()">
+      <span class="nav-text">Vida Estudiantil</span>
+    </a>
+  </div>
+
+  
+  <!-- Logout Action -->
+  <div class="nav-actions">
+    <!-- Información del usuario -->
+    @if (currentUser) {
+      <div class="user-info-section">
+        <div class="user-info">
+          <span class="user-name">{{ currentUser.nombres }}</span>
+          <span class="user-email">{{ currentUser.correo }}</span>
+        </div>
+      </div>
+    }
+    
+    <!-- Botón de logout -->
+    <button class="logout-btn" (click)="logout()"> 
+      <i class="logout-icon"></i>
+      <span class="nav-text">Cerrar Sesión</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu Toggle -->
+<button class="mobile-toggle" 
+        (click)="toggleMobile()" 
+        [class.active]="mobileOpen"
+        aria-label="Toggle navigation">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</button>
+
+<!-- Mobile Overlay -->
+<div class="mobile-overlay" 
+     [class.active]="mobileOpen" 
+     (click)="closeMobile()"></div>
+

@@ -1,0 +1,14 @@
+<section class="blog-header">
+</section>
+<div class="card-grid">
+  <div class="card" *ngFor="let espacio of espacios" (click)="navigateTo(espacio.route)" style="cursor:pointer;">
+    <div class="card-img-wrapper">
+      <img [src]="espacio.img" alt="{{espacio.title}}" class="card-img" />
+      <span class="card-tag">{{espacio.tag}}</span>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{espacio.title}}</h3>
+      <p class="card-desc">{{espacio.desc}}</p>
+    </div>
+  </div>
+</div>
